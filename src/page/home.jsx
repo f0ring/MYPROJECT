@@ -26,7 +26,7 @@ const Home = () => {
 
     return (
         <div>
-            <h1>This is Homrrre</h1>
+            <h1>This is Home</h1>
             <button onClick={handleClick}>
                 Click me
             </button>
