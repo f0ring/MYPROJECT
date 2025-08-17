@@ -29,7 +29,7 @@ const allArticles = titles.map((title, i) => ({
 
 const Articles = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const perPage = 2;
+  const perPage = 3; // ✅ Show 3 rows per page now
 
   const indexOfLast = currentPage * perPage;
   const indexOfFirst = indexOfLast - perPage;

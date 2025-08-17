@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Person, FileText } from "react-bootstrap-icons";
+import { Person, FileText, List, ArrowLeftCircle } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import profilePic from "../assets/image.jpg"; // ✅ Import image
 
@@ -20,7 +20,7 @@ const Sidebar = () => {
         onClick={() => setCollapsed(!collapsed)}
         className="btn btn-outline-secondary mb-3"
       >
-        {collapsed ? ">>" : "<<"}
+        {collapsed ? <List size={20} /> : <ArrowLeftCircle size={20} />}
       </button>
 
       {/* Profile section */}
