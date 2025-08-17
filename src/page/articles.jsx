@@ -17,14 +17,14 @@ const titles = [
   "Art Journal: Playing with Watercolors",
   "Craft Ideas for Kids: Fun & Easy Projects",
   "Vlog: Behind the Scenes of Content Creation",
-  "Blog: The Power of Storytelling in Marketing"
+  "Blog: The Power of Storytelling in Marketing",
 ];
 
 const allArticles = titles.map((title, i) => ({
   id: i + 1,
   title,
   status: i % 2 === 0 ? "Published" : "Draft",
-  edited: `${i + 1} days ago`
+  edited: `${i + 1} days ago`,
 }));
 
 const Articles = () => {
@@ -39,7 +39,9 @@ const Articles = () => {
 
   return (
     <div className="container mt-4">
-      <h2>My Articles</h2>
+      {/* Left-aligned heading */}
+      <h2 className="text-start">My Articles</h2>
+      
       <Table bordered hover responsive>
         <thead>
           <tr>
@@ -49,11 +51,14 @@ const Articles = () => {
           </tr>
         </thead>
         <tbody>
-          {currentArticles.map(article => (
+          {currentArticles.map((article) => (
             <tr key={article.id}>
               <td>{article.title}</td>
               <td>
-                <Badge pill bg={article.status === "Published" ? "success" : "warning"}>
+                <Badge
+                  pill
+                  bg={article.status === "Published" ? "success" : "warning"}
+                >
                   {article.status}
                 </Badge>
               </td>

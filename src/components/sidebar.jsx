@@ -1,41 +1,50 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
 import { Person, FileText } from "react-bootstrap-icons";
-import styles from "../css/sidebar.module.css";
+import { Link } from "react-router-dom";
+import profilePic from "../assets/image.jpg"; // ✅ Import image
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(true);
-  const location = useLocation();
+  const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <div className={`${styles.sidebar} ${isOpen ? styles.open : styles.closed}`}>
-      <div className={styles.topSection}>
-        <img
-          src="https://via.placeholder.com/40"
-          alt="profile"
-          className={styles.avatar}
-        />
-        {isOpen && <span className={styles.name}>Sophia Carter</span>}
-      </div>
-
-      <button className={styles.toggleBtn} onClick={() => setIsOpen(!isOpen)}>
-        {isOpen ? "«" : "»"}
+    <div
+      className="bg-light border-end p-3 d-flex flex-column"
+      style={{
+        width: collapsed ? "80px" : "220px",
+        minHeight: "100vh",
+        transition: "0.3s",
+      }}
+    >
+      {/* Collapse button at the top */}
+      <button
+        onClick={() => setCollapsed(!collapsed)}
+        className="btn btn-outline-secondary mb-3"
+      >
+        {collapsed ? ">>" : "<<"}
       </button>
 
-      <ul className={styles.menu}>
-        <li className={location.pathname.includes("profile") ? styles.active : ""}>
-          <Link to="/dashboard/profile">
-            <Person size={20} />
-            {isOpen && <span> Profile</span>}
-          </Link>
-        </li>
-        <li className={location.pathname.includes("articles") ? styles.active : ""}>
-          <Link to="/dashboard/articles">
-            <FileText size={20} />
-            {isOpen && <span> My Articles</span>}
-          </Link>
-        </li>
-      </ul>
+      {/* Profile section */}
+      <div className="text-center mb-4">
+        <img
+          src={profilePic}
+          alt="Profile"
+          className="rounded-circle mb-2"
+          style={{
+            width: collapsed ? "40px" : "70px",
+            height: collapsed ? "40px" : "70px",
+            objectFit: "cover",
+          }}
+        />
+        {!collapsed && <p className="mb-0 fw-bold">Sophia Carter</p>}
+      </div>
+
+      {/* Links */}
+      <Link to="/dashboard/profile" className="text-dark mb-3 d-flex align-items-center">
+        <Person className="me-2" /> {!collapsed && "Profile"}
+      </Link>
+      <Link to="/dashboard/articles" className="text-dark mb-3 d-flex align-items-center">
+        <FileText className="me-2" /> {!collapsed && "My Articles"}
+      </Link>
     </div>
   );
 };
