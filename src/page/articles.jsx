@@ -1,11 +1,30 @@
 import { useState } from "react";
 import { Table, Badge, Pagination } from "react-bootstrap";
 
-const allArticles = Array.from({ length: 16 }, (_, i) => ({
+const titles = [
+  "Daily Journal: Finding Peace in Small Moments",
+  "Creative Crafting: DIY Home Décor Ideas",
+  "Travel Vlog: Exploring the Streets of Kyoto",
+  "Blogging Tips: Growing Your Online Audience",
+  "Photography Journal: Capturing the Golden Hour",
+  "Handmade Crafts: A Beginner’s Guide",
+  "Vlogging 101: From Camera Setup to Editing",
+  "Personal Blog: My Journey into Minimalism",
+  "Cooking Journal: Experiments in the Kitchen",
+  "Craft Workshop: Creating with Clay",
+  "Vlog: A Day in the Life of a Digital Nomad",
+  "Blog: How to Stay Consistent as a Writer",
+  "Art Journal: Playing with Watercolors",
+  "Craft Ideas for Kids: Fun & Easy Projects",
+  "Vlog: Behind the Scenes of Content Creation",
+  "Blog: The Power of Storytelling in Marketing"
+];
+
+const allArticles = titles.map((title, i) => ({
   id: i + 1,
-  title: `Article ${i + 1} Title Example`,
+  title,
   status: i % 2 === 0 ? "Published" : "Draft",
-  edited: `${i + 1} days ago`,
+  edited: `${i + 1} days ago`
 }));
 
 const Articles = () => {
@@ -44,25 +63,28 @@ const Articles = () => {
         </tbody>
       </Table>
 
-      <Pagination>
-        <Pagination.Prev
-          disabled={currentPage === 1}
-          onClick={() => setCurrentPage(currentPage - 1)}
-        />
-        {[...Array(totalPages)].map((_, i) => (
-          <Pagination.Item
-            key={i + 1}
-            active={i + 1 === currentPage}
-            onClick={() => setCurrentPage(i + 1)}
-          >
-            {i + 1}
-          </Pagination.Item>
-        ))}
-        <Pagination.Next
-          disabled={currentPage === totalPages}
-          onClick={() => setCurrentPage(currentPage + 1)}
-        />
-      </Pagination>
+      {/* Centered Pagination */}
+      <div className="d-flex justify-content-center">
+        <Pagination>
+          <Pagination.Prev
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage(currentPage - 1)}
+          />
+          {[...Array(totalPages)].map((_, i) => (
+            <Pagination.Item
+              key={i + 1}
+              active={i + 1 === currentPage}
+              onClick={() => setCurrentPage(i + 1)}
+            >
+              {i + 1}
+            </Pagination.Item>
+          ))}
+          <Pagination.Next
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage(currentPage + 1)}
+          />
+        </Pagination>
+      </div>
     </div>
   );
 };
