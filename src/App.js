@@ -1,26 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
-import Navbarr from './components/navbar';
+import Sidebar from './components/sidebar';
+import Profile from './page/profile';   // or './page/profile' if you keep lowercase
+import Articles from './page/articles'; // or './page/articles'
 import Home from './page/home';
 import Contact from './page/contact';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import About from './page/about';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
-        <Navbarr></Navbarr>
+      <div className="App d-flex">
+        <Sidebar />
+        <div style={{ flex: 1, padding: "20px" }}>
+          <Routes>
+            
+            <Route path="/dashboard/profile" element={<Profile />} />
+            <Route path="/dashboard/articles" element={<Articles />} />
+          </Routes>
+        </div>
       </div>
-
-      <div>
-        <Routes>
-          <Route path='/' element={<Home/>}></Route>
-          <Route path='/contact' element={<Contact/>}>
-            <Route path='about/:id' element={<About/>}/> 
-          </Route>
-        </Routes>
-      </div>
-
     </BrowserRouter>
   );
 }
