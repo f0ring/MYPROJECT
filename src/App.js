@@ -2,9 +2,8 @@ import './App.css';
 import Sidebar from './components/sidebar';
 import Profile from './page/profile';   // or './page/profile' if you keep lowercase
 import Articles from './page/articles'; // or './page/articles'
-import Home from './page/home';
-import Contact from './page/contact';
-import About from './page/about';
+
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
