@@ -1,28 +1,19 @@
 .sidebar {
-  background: #f8f9fa;
+  background-color: #f8f9fa;
   height: 100vh;
-  transition: width 0.3s ease;
-  padding: 15px;
-  border-right: 1px solid #ddd;
-}
-
-.sidebar.open {
   width: 220px;
+  transition: width 0.3s ease;
+  padding: 10px;
 }
 
 .sidebar.closed {
   width: 70px;
 }
 
-.link {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  text-decoration: none;
-  color: black;
-  border-radius: 8px;
+.sidebar ul {
+  padding: 0;
 }
 
-.link:hover {
-  background-color: #e9ecef;
+.sidebar li {
+  margin: 10px 0;
 }
