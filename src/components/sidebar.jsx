@@ -1,43 +1,38 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Button, Image } from "react-bootstrap";
+import { Link, useLocation } from "react-router-dom";
 import { Person, FileText } from "react-bootstrap-icons";
 import styles from "../css/sidebar.module.css";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
+  const location = useLocation();
 
   return (
     <div className={`${styles.sidebar} ${isOpen ? styles.open : styles.closed}`}>
-      <Button 
-        variant="light" 
-        size="sm" 
-        onClick={() => setIsOpen(!isOpen)} 
-        className="mt-2 mb-3"
-      >
-        {isOpen ? "<<" : ">>"}
-      </Button>
+      <div className={styles.topSection}>
+        <img
+          src="https://via.placeholder.com/40"
+          alt="profile"
+          className={styles.avatar}
+        />
+        {isOpen && <span className={styles.name}>Sophia Carter</span>}
+      </div>
 
-      {isOpen && (
-        <div className="text-center">
-          <Image 
-            src="https://via.placeholder.com/80" 
-            roundedCircle 
-            alt="profile" 
-          />
-          <h6 className="mt-2">Sophia Carter</h6>
-        </div>
-      )}
+      <button className={styles.toggleBtn} onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? "«" : "»"}
+      </button>
 
-      <ul className="list-unstyled mt-4">
-        <li>
-          <Link to="/dashboard/profile" className={styles.link}>
-            <Person className="me-2" /> {isOpen && "Profile"}
+      <ul className={styles.menu}>
+        <li className={location.pathname.includes("profile") ? styles.active : ""}>
+          <Link to="/dashboard/profile">
+            <Person size={20} />
+            {isOpen && <span> Profile</span>}
           </Link>
         </li>
-        <li>
-          <Link to="/dashboard/articles" className={styles.link}>
-            <FileText className="me-2" /> {isOpen && "My Articles"}
+        <li className={location.pathname.includes("articles") ? styles.active : ""}>
+          <Link to="/dashboard/articles">
+            <FileText size={20} />
+            {isOpen && <span> My Articles</span>}
           </Link>
         </li>
       </ul>

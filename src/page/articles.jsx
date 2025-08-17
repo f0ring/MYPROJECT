@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Table, Badge, Pagination } from "react-bootstrap";
 
-const allArticles = [
-  { id: 1, title: "The Art of Storytelling: A Guide to Captivating Your Audience.", status: "Published", edited: "2 days ago" },
-  { id: 2, title: "Crafting Compelling Characters: A Step-by-Step Approach", status: "Draft", edited: "1 week ago" },
-  { id: 3, title: "Mastering Dialogue in Fiction: Techniques for Realistic Conversations", status: "Published", edited: "2 weeks ago" },
-];
+const allArticles = Array.from({ length: 16 }, (_, i) => ({
+  id: i + 1,
+  title: `Article ${i + 1} Title Example`,
+  status: i % 2 === 0 ? "Published" : "Draft",
+  edited: `${i + 1} days ago`,
+}));
 
 const Articles = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,7 +21,7 @@ const Articles = () => {
   return (
     <div className="container mt-4">
       <h2>My Articles</h2>
-      <Table striped bordered hover>
+      <Table bordered hover responsive>
         <thead>
           <tr>
             <th>Title</th>
@@ -44,7 +45,10 @@ const Articles = () => {
       </Table>
 
       <Pagination>
-        <Pagination.Prev disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)} />
+        <Pagination.Prev
+          disabled={currentPage === 1}
+          onClick={() => setCurrentPage(currentPage - 1)}
+        />
         {[...Array(totalPages)].map((_, i) => (
           <Pagination.Item
             key={i + 1}
@@ -54,7 +58,10 @@ const Articles = () => {
             {i + 1}
           </Pagination.Item>
         ))}
-        <Pagination.Next disabled={currentPage === totalPages} onClick={() => setCurrentPage(currentPage + 1)} />
+        <Pagination.Next
+          disabled={currentPage === totalPages}
+          onClick={() => setCurrentPage(currentPage + 1)}
+        />
       </Pagination>
     </div>
   );
